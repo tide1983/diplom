@@ -668,3 +668,212 @@ button {
 .topic-item {
     text-transform: uppercase;
 }
+
+/* ==================== ВСПЛЫВАЮЩАЯ ФОРМА (ПОПАП) ==================== */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup--open {
+    display: flex;
+}
+
+.popup__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
+.popup__content {
+    position: relative;
+    width: 390px;
+    max-width: 90%;
+    background-color: #ffffff;
+    padding: 55px 30px 30px;
+    z-index: 10000;
+}
+
+.popup__close {
+    position: absolute;
+    top: -25px;
+    right: 0;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.popup__close img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: brightness(0) invert(1);
+}
+
+.popup__title {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    color: #0f0d0e;
+    margin-bottom: 30px;
+}
+
+.popup__title::after {
+    content: '';
+    display: block;
+    width: 66px;
+    height: 3px;
+    background-color: #b59f5b;
+    margin: 15px auto 0;
+}
+
+/* Форма */
+.popup-form__group {
+    margin-bottom: 35px;
+}
+
+.popup-form__label {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    color: #0f0d0e;
+    margin-bottom: 10px;
+}
+
+/* Селект */
+.popup-form__select-wrapper {
+    position: relative;
+}
+
+.popup-form__select-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #b59f5b;
+    pointer-events: none;
+}
+
+.popup-form__select {
+    width: 100%;
+    height: 50px;
+    padding: 0 35px 0 20px;
+    font-size: 13px;
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: #0f0d0e;
+    background-color: #f4f7f6;
+    border: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.popup-form__select:focus {
+    outline: 1px solid #b59f5b;
+}
+
+/* Радио-кнопки */
+.popup-form__radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.popup-form__radio {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.popup-form__radio input[type="radio"] {
+    display: none;
+}
+
+.popup-form__radio-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #b59f5b;
+    border-radius: 50%;
+    position: relative;
+}
+
+.popup-form__radio input[type="radio"]:checked + .popup-form__radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: #b59f5b;
+    border-radius: 50%;
+}
+
+.popup-form__radio-text {
+    font-size: 13px;
+    color: #0f0d0e;
+}
+
+/* Поле ввода */
+.popup-form__input {
+    width: 100%;
+    height: 150px;
+    padding: 0 20px;
+    font-size: 13px;
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: #0f0d0e;
+    background-color: #f4f7f6;
+    border: none;
+    box-sizing: border-box;
+    text-align: left;
+    line-height: 1;  /* Минимальная высота строки */
+}
+
+.popup-form__input:focus {
+    outline: 1px solid #b59f5b;
+}
+
+.popup-form__input::placeholder {
+    color: #a2a2a2;
+    text-align: left;
+    position: relative;
+    top: -60px;  /* Поднимаем placeholder вверх */
+}
+
+/* Кнопка отправки */
+.popup-form__button {
+    width: 100%;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: #b59f5b;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+.popup-form__button:hover {
+    background-color: #a08d4e;
+}
