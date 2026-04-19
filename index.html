@@ -32,6 +32,13 @@
                     <li class="menu__item"><a href="#">Контакты</a></li>
                 </ul>
             </nav>
+            
+            <!-- Кнопка бургер-меню -->
+            <button class="burger" type="button">
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+            </button>
         </div>
         
         <!-- Главный заголовок -->
@@ -277,7 +284,7 @@
                 <section class="widget">
                     <h3 class="widget__title">Рассылка</h3>
                     <form class="subscribe-form">
-                        <input class="subscribe-form__input" type="email" placeholder="Ваш email-адрес" required>
+                        <input class="subscribe-form__input" type="email" placeholder="Ваш email-адрес">
                         <button class="subscribe-form__button" type="submit">Подписаться</button>
                     </form>
                 </section>
@@ -404,7 +411,7 @@
     </footer>
 
 <!-- ==================== ВСПЛЫВАЮЩАЯ ФОРМА (ПОПАП) ==================== -->
-<div class="popup" id="popup">
+<div class="popup _hidden" id="popup">
     <div class="popup__overlay"></div>
     <div class="popup__content">
         <button class="popup__close" type="button">
@@ -466,29 +473,28 @@
         
         // Функция открытия попапа
         function openPopup() {
+            popup.classList.remove('_hidden');
             popup.classList.add('popup--open');
-            document.body.style.overflow = 'hidden'; // Запрещаем скролл страницы
+            document.body.style.overflow = 'hidden';
         }
         
         // Функция закрытия попапа
         function closePopup() {
             popup.classList.remove('popup--open');
-            document.body.style.overflow = ''; // Возвращаем скролл
+            popup.classList.add('_hidden');
+            document.body.style.overflow = '';
         }
         
-        // Здесь можно привязать открытие попапа к любой кнопке
-        // Например, к кнопке "Подписаться" в рассылке
+        // Открытие по кнопке "Подписаться"
         var subscribeBtn = document.querySelector('.subscribe-form__button');
-        if (subscribeBtn) {
-            subscribeBtn.addEventListener('click', function(e) {
-                e.preventDefault(); // Отменяем отправку формы
-                openPopup();
+        var subscribeForm = document.querySelector('.subscribe-form');
+        
+        if (subscribeForm) {
+            subscribeForm.addEventListener('submit', function(e) {
+                e.preventDefault();  // Отменяем отправку формы
+                openPopup();         // Открываем попап
             });
         }
-        
-        // Также можно открыть по клику на любую ссылку с классом .js-open-popup
-        // Или просто показать при загрузке страницы (для демонстрации):
-        // setTimeout(openPopup, 1000);
         
         // Закрытие по клику на оверлей
         overlay.addEventListener('click', closePopup);
@@ -509,13 +515,15 @@
             e.stopPropagation();
         });
         
-        // Предотвращаем отправку формы (для демонстрации)
+        // Предотвращаем отправку формы в попапе
         var popupForm = popup.querySelector('.popup-form');
-        popupForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Форма отправлена! (демонстрация)');
-            closePopup();
-        });
+        if (popupForm) {
+            popupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Форма отправлена! (демонстрация)');
+                closePopup();
+            });
+        }
         
     })();
 </script>
