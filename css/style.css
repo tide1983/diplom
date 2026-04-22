@@ -677,7 +677,7 @@ button {
     width: 100%;
     height: 100%;
     z-index: 9999;
-    display: none;
+    display: flex;  /* Было display: none; меняем на flex */
     align-items: center;
     justify-content: center;
 }
@@ -1157,7 +1157,7 @@ button {
 }
 
 /* Скрытие попапа по умолчанию */
-.popup._hidden {
+/*.popup._hidden {
     display: none;
 }
 
